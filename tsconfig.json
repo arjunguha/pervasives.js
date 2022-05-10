@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "target": "ES2020",
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "./target"
+  }
+}

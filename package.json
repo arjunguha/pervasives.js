@@ -1,0 +1,20 @@
+{
+  "name": "@arjunguha/pervasives.js",
+  "version": "1.0.0",
+  "description": "Abstractions missing from JavaScript standard libraries",
+  "main": "target/index.js",
+  "repository": "https://github.com/arjunguha/pervasives.js",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arjun Guha <a.guha@northeastern.edu>",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "typescript": "^4.6.4"
+  }
+}
