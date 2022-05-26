@@ -1,13 +1,19 @@
 import { Result, ok, error } from "./result";
 import * as cp from "child_process";
+import * as stream from "stream";
 
 export function spawnWithTimeout(
     command: string,
     args: string[],
-    timeout: number): Promise<Result<{ stdout: string, stderr: string, exitCode: number }>> {
-    const child = cp.spawn(command, args);
+    timeout: number,
+    stdin: string = ""): Promise<Result<{ stdout: string, stderr: string, exitCode: number }>> {
+    const child = cp.spawn(command, args, { stdio: ["pipe", "pipe", "pipe"] });
     const stdoutChunks: string[] = [];
     const stderrChunks: string[] = [];
+
+    const stdinStream = stream.Readable.from(stdin);
+    stdinStream.pipe(child.stdin);
+
     child.stdout.on('data', (chunk) => stdoutChunks.push(chunk.toString()));
     child.stderr.on('data', (chunk) => stderrChunks.push(chunk.toString()));
     return new Promise((resolve, reject) => {
